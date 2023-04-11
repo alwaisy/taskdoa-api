@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import morgan from "morgan";
 import { router as taskRouter } from "./tasks/task.router";
 import { PrismaClient } from "@prisma/client";
 
@@ -16,6 +17,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   app.use(cors());
+  app.use(morgan("tiny"));
   app.use(express.json());
   app.use("/api/tasks", taskRouter);
 
